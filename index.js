@@ -51,14 +51,14 @@ if (typeof self === 'object') {
     };
   }
 } else {
-  // Node.js or Web worker with no crypto support
+  // React native randombytes
   try {
-    var crypto = require('crypto');
-    if (typeof crypto.randomBytes !== 'function')
+    var randBytes = require('react-native-randombytes').randomBytes;
+    if (typeof randBytes !== 'function')
       throw new Error('Not supported');
 
     Rand.prototype._rand = function _rand(n) {
-      return crypto.randomBytes(n);
+      return randBytes(n);
     };
   } catch (e) {
   }
